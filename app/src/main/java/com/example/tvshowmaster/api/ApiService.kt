@@ -9,8 +9,8 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET(Constants.END_POINT)
-    fun getTvShows() : Response<TvShowResponse>
+    suspend fun getTvShows() : Response<TvShowResponse>
 
     @GET(Constants.PEOPLE_POINT)
-    fun getPeople(): Response<PeopleResponse>
+    suspend fun getPeople(): Response<PeopleResponse>
 }
