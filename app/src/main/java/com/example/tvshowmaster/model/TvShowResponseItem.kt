@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class TvShowResponseItem(
     val _links: Links,
     val averageRuntime: Int,
-    val dvdCountry: DvdCountry,
     val ended: String,
     val externals: Externals,
     val genres: List<String>,
@@ -25,6 +24,5 @@ data class TvShowResponseItem(
     val type: String,
     val updated: Int,
     val url: String,
-    val webChannel: WebChannel,
     val weight: Int
 ) : Parcelable

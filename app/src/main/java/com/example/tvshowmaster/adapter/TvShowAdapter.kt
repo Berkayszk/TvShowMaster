@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.tvshowappmaster.model.PeopleResponseItem
 import com.example.tvshowappmaster.model.TvShowResponseItem
 import com.example.tvshowmaster.databinding.TvshowRowBinding
 import com.example.tvshowmaster.view.TvShowFragmentDirections
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
-    private lateinit var peopleAdapter : PeopleAdapter
+   // private lateinit var peopleAdapter : PeopleAdapter
     inner class TvShowViewHolder(val binding : TvshowRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallBack = object : DiffUtil.ItemCallback<TvShowResponseItem>(){
@@ -49,6 +50,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
         val currentTvShow = tvshow[position]
+        //val people = peopleAdapter.people
 
         holder.binding.apply {
             textView.text = currentTvShow.name
@@ -56,11 +58,12 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
                 crossfade(true)
                 crossfade(1000)
             }
+
         }
 
-        holder.itemView.setOnClickListener {
-            val direction =TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(currentTvShow,peopleAdapter.people[position])
-            it.findNavController().navigate(direction)
+        holder.itemView.setOnClickListener {tvshow->
+            val direction =TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(currentTvShow)
+            tvshow.findNavController().navigate(direction)
         }
 
     }

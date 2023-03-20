@@ -28,9 +28,6 @@
         <argument
             android:name="tvshow"
             app:argType="com.example.tvshowappmaster.model.TvShowResponseItem" />
-        <argument
-            android:name="people"
-            app:argType="com.example.tvshowappmaster.model.PeopleResponseItem" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"

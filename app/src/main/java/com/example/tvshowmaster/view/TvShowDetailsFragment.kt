@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.tvshowappmaster.model.PeopleResponseItem
@@ -49,9 +50,13 @@ class TvShowDetailsFragment : Fragment(R.layout.fragment_tv_show_details) {
                 crossfade(1000)
                 crossfade(true)
             }
+            button.setOnClickListener {webView->
+                val direction = TvShowDetailsFragmentDirections.actionTvShowDetailsFragmentToWebViewFragment(tvshow)
+                webView.findNavController().navigate(direction)
+            }
         }
-    }
 
+    }
 
     override fun onDestroy() {
         super.onDestroy()

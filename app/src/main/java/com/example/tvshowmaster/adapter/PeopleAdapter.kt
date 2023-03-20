@@ -59,13 +59,15 @@ class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>() {
             }
         }
 
-
+        /*
         val peopleShow = PeopleResponseItem(
             currentPeople._links,currentPeople.birthday,currentPeople.country,currentPeople.deathday,currentPeople.gender,
             currentPeople.id,currentPeople.image,currentPeople.name,currentPeople.updated,currentPeople.url
         )
+
+         */
         holder.itemView.setOnClickListener {
-            val direction = TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(tvShowAdapter.tvshow[position],currentPeople)
+            val direction = TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(tvShowAdapter.tvshow[position])
             it.findNavController().navigate(direction)
         }
     }
