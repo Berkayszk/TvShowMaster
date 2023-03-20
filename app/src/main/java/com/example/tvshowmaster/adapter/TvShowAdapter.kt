@@ -13,6 +13,7 @@ import com.example.tvshowmaster.view.TvShowFragmentDirections
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
+    private lateinit var peopleAdapter : PeopleAdapter
     inner class TvShowViewHolder(val binding : TvshowRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallBack = object : DiffUtil.ItemCallback<TvShowResponseItem>(){
@@ -48,6 +49,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
         val currentTvShow = tvshow[position]
+
         holder.binding.apply {
             textView.text = currentTvShow.name
             imageView.load(currentTvShow.image.original){
@@ -57,7 +59,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
         }
 
         holder.itemView.setOnClickListener {
-            val direction =TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(currentTvShow)
+            val direction =TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(currentTvShow,peopleAdapter.people[position])
             it.findNavController().navigate(direction)
         }
 
