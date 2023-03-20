@@ -41,39 +41,32 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
     }
     private fun setupRvTvShow(){
         tvShowAdapter = TvShowAdapter()
-        //peopleAdapter = PeopleAdapter()
+        peopleAdapter = PeopleAdapter()
 
        binding.recyclerView.apply {
            adapter = tvShowAdapter
            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
            setHasFixedSize(true)
        }
-        /*
+        binding.recyclerViewEpisode.apply {
+            adapter = tvShowAdapter
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            setHasFixedSize(true)
+        }
         binding.recyclerViewPeople.apply {
             adapter = peopleAdapter
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             setHasFixedSize(true)
         }
 
-
-
-        binding.recyclerViewEpisode.apply {
-            adapter = tvShowAdapter
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            setHasFixedSize(true)
-        }
-
-         */
-
-
         viewModel.tvShowResponse.observe(viewLifecycleOwner, Observer{
             tvShowAdapter.tvshow = it
-        })/*
+        })
         viewModel.peopleResponse.observe(viewLifecycleOwner, {people ->
             peopleAdapter.people = people
         })
 
-        */
+
 
     }
     override fun onDestroy() {

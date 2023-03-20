@@ -51,6 +51,7 @@ class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>() {
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
         val currentPeople = people[position]
+        tvShowAdapter = TvShowAdapter()
         holder.binding.apply {
             textView.text = currentPeople.name
             imageView.load(currentPeople.image.original) {
@@ -65,11 +66,13 @@ class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>() {
             currentPeople.id,currentPeople.image,currentPeople.name,currentPeople.updated,currentPeople.url
         )
 
-         */
+
         holder.itemView.setOnClickListener {
             val direction = TvShowFragmentDirections.actionTvShowFragmentToTvShowDetailsFragment(tvShowAdapter.tvshow[position])
             it.findNavController().navigate(direction)
         }
+
+         */
     }
 
 
