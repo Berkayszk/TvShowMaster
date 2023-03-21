@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -14,6 +15,7 @@ import com.example.tvshowappmaster.model.TvShowResponseItem
 import com.example.tvshowmaster.R
 import com.example.tvshowmaster.databinding.FragmentTvShowBinding
 import com.example.tvshowmaster.databinding.FragmentTvShowDetailsBinding
+import org.jsoup.Jsoup
 
 
 class TvShowDetailsFragment : Fragment(R.layout.fragment_tv_show_details) {
@@ -39,13 +41,19 @@ class TvShowDetailsFragment : Fragment(R.layout.fragment_tv_show_details) {
 
     }
     private fun populateUI(){
+        val cleanSummary = tvshow.summary
+        val cleanedData = Jsoup.parse(cleanSummary)
+
         binding.apply {
             tvshowText.text = tvshow.name
+            summaryText.text = cleanedData.text().toString()
             genresText.text = tvshow.genres.toString()
-            languageText.text = tvshow.language
-            runtimeText.text = tvshow.runtime.toString()
-            ratingText.text = tvshow.rating.average.toString()
-            statusText.text = tvshow.status
+            languageText.text = "${"Language: "+tvshow.language}"
+            runtimeText.text = "${"Runtime: "+tvshow.runtime.toString() + " min."}"
+            ratingText.text = "${"IMDB: "+tvshow.rating.average.toString()}"
+            statusText.text = "${"Status:"+tvshow.status}"
+            premieredText.text = "${"Premiered: "+tvshow.premiered}"
+            endedText.text = "${"Ended: "+tvshow.ended}"
             imageView2.load(tvshow.image.original){
                 crossfade(1000)
                 crossfade(true)
