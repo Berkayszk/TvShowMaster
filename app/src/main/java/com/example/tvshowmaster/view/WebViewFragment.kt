@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.navArgs
 import com.example.tvshowappmaster.model.TvShowResponseItem
@@ -39,6 +40,18 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(tvShow.url)
+        }
+
+        binding.webView.settings.apply {
+            javaScriptEnabled = true
+            //setAppCacheEnabled(true)
+            cacheMode = WebSettings.LOAD_DEFAULT
+            setSupportZoom(false)
+            builtInZoomControls = false
+            displayZoomControls = false
+            textZoom = 100
+            blockNetworkImage = false
+            loadsImagesAutomatically = true
         }
     }
 
